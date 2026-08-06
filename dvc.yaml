@@ -29,7 +29,7 @@ stages:
       - data_processing.augmentation.zoom_range
     outs:
       - data/processed
-      
+
   feature_selection:
     cmd: python src/feature_selection.py
     deps:
@@ -42,3 +42,28 @@ stages:
     outs:
       - data/features
       - models/feature_selector.joblib
+
+  model_training:
+    cmd: python src/model_training.py
+    deps:
+      - src/model_training.py
+      - src/mlp.py
+      - data/features
+    params:
+      - model_training.model_type
+      - model_training.hidden_layers
+      - model_training.learning_rate
+      - model_training.batch_size
+      - model_training.epochs
+      - model_training.optimizer
+      - model_training.dropout_rate
+      - model_training.early_stopping_patience
+      - model_training.random_seed
+    outs:
+      - models/model.joblib
+    metrics:
+      - metrics/train_history.json:
+          cache: false
+    plots:
+      - reports/training_curves.png:
+          cache: false
