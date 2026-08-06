@@ -1,0 +1,11 @@
+stages:
+  data_collection:
+    cmd: python src/data_collection.py
+    deps:
+    - src/data_collection.py
+    params:
+    - data_collection.dataset
+    - data_collection.raw_data_dir
+    - data_collection.random_seed
+    outs:
+    - data/raw
