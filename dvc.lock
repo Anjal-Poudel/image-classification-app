@@ -1,0 +1,20 @@
+schema: '2.0'
+stages:
+  data_collection:
+    cmd: python src/data_collection.py
+    deps:
+    - path: src/data_collection.py
+      hash: md5
+      md5: 07fc3aea7737ad2a6362bd2611bf605c
+      size: 2788
+    params:
+      params.yaml:
+        data_collection.dataset: sklearn_digits
+        data_collection.random_seed: 42
+        data_collection.raw_data_dir: data/raw
+    outs:
+    - path: data/raw
+      hash: md5
+      md5: f1749a5e50370b359950c85294c3e36b.dir
+      size: 221992
+      nfiles: 1797
