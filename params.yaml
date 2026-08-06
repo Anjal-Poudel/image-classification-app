@@ -1,0 +1,36 @@
+data_collection:
+  dataset: "sklearn_digits"      
+  raw_data_dir: "data/raw"
+  random_seed: 42
+
+data_processing:
+  image_size: 32                 # images are resized to image_size x image_size
+  grayscale: true
+  normalize: true                # scale pixel values to [0, 1]
+  test_split: 0.15                # fraction of data held out for the test set
+  val_split: 0.15                 # fraction of remaining data held out for validation
+  augmentation:
+    enabled: true
+    rotation_range: 15            # max random rotation in degrees, applied to train split only
+    horizontal_flip: true
+    zoom_range: 0.1                # +/- fraction of random zoom
+
+feature_selection:
+  method: "select_k_best"        # options: select_k_best | pca | variance_threshold
+  num_features: 300              # target feature count for select_k_best / pca
+  variance_threshold: 0.01       # used when method == variance_threshold
+
+model_training:
+  model_type: "mlp"
+  hidden_layers: [128, 64]       # sizes of the hidden layers of the MLP
+  learning_rate: 0.001
+  batch_size: 32
+  epochs: 30
+  optimizer: "adam"              # options: adam | sgd
+  dropout_rate: 0.3
+  early_stopping_patience: 5     # stop if val loss doesn't improve for N epochs
+  random_seed: 42
+
+model_evaluation:
+  metrics: ["accuracy", "precision", "recall", "f1"]
+  confusion_matrix: true
