@@ -76,3 +76,45 @@ stages:
       hash: md5
       md5: 6539de551e24d986bd87b6c0ef31837b
       size: 16855
+  model_training:
+    cmd: python src/model_training.py
+    deps:
+    - path: data/features
+      hash: md5
+      md5: d8861a8e15fec4968afd2752c12e26e7.dir
+      size: 1399757
+      nfiles: 2
+    - path: src/mlp.py
+      hash: md5
+      md5: cb39b0c4794d810c28b998e34bb34762
+      size: 7669
+    - path: src/model_training.py
+      hash: md5
+      md5: c00e9f6d4b276259c875f6109b6a8231
+      size: 3348
+    params:
+      params.yaml:
+        model_training.batch_size: 32
+        model_training.dropout_rate: 0.3
+        model_training.early_stopping_patience: 5
+        model_training.epochs: 30
+        model_training.hidden_layers:
+        - 128
+        - 64
+        model_training.learning_rate: 0.001
+        model_training.model_type: mlp
+        model_training.optimizer: adam
+        model_training.random_seed: 42
+    outs:
+    - path: metrics/train_history.json
+      hash: md5
+      md5: 9d2634c61d9e2e357042da6bfc51b8e4
+      size: 2848
+    - path: models/model.joblib
+      hash: md5
+      md5: 185678c19dc2aa6dce49d49d543f9cc4
+      size: 570972
+    - path: reports/training_curves.png
+      hash: md5
+      md5: a85fb95981af34b09881bbc8e29459c8
+      size: 57120
