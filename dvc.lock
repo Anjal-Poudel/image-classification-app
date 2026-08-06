@@ -49,3 +49,30 @@ stages:
       md5: d0732cfb1da79efdceda50d432744c7f.dir
       size: 2944109
       nfiles: 2
+  feature_selection:
+    cmd: python src/feature_selection.py
+    deps:
+    - path: data/processed
+      hash: md5
+      md5: d0732cfb1da79efdceda50d432744c7f.dir
+      size: 2944109
+      nfiles: 2
+    - path: src/feature_selection.py
+      hash: md5
+      md5: 9b3201652eebab87061bca3552b4a175
+      size: 3374
+    params:
+      params.yaml:
+        feature_selection.method: select_k_best
+        feature_selection.num_features: 300
+        feature_selection.variance_threshold: 0.01
+    outs:
+    - path: data/features
+      hash: md5
+      md5: d8861a8e15fec4968afd2752c12e26e7.dir
+      size: 1399757
+      nfiles: 2
+    - path: models/feature_selector.joblib
+      hash: md5
+      md5: 6539de551e24d986bd87b6c0ef31837b
+      size: 16855
