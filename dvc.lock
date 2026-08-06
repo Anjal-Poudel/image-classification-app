@@ -118,3 +118,36 @@ stages:
       hash: md5
       md5: a85fb95981af34b09881bbc8e29459c8
       size: 57120
+  model_evaluation:
+    cmd: python src/model_evaluation.py
+    deps:
+    - path: data/features
+      hash: md5
+      md5: d8861a8e15fec4968afd2752c12e26e7.dir
+      size: 1399757
+      nfiles: 2
+    - path: models/model.joblib
+      hash: md5
+      md5: 185678c19dc2aa6dce49d49d543f9cc4
+      size: 570972
+    - path: src/model_evaluation.py
+      hash: md5
+      md5: 9a780e477cc113abad15a8478a5e238c
+      size: 3157
+    params:
+      params.yaml:
+        model_evaluation.confusion_matrix: true
+        model_evaluation.metrics:
+        - accuracy
+        - precision
+        - recall
+        - f1
+    outs:
+    - path: metrics/eval_metrics.json
+      hash: md5
+      md5: aba145a24e0da246e088257ec48da7d1
+      size: 156
+    - path: reports/confusion_matrix.png
+      hash: md5
+      md5: c1035633673c64fa9f74bb173c81c9e9
+      size: 39899
