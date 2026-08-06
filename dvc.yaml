@@ -29,3 +29,16 @@ stages:
       - data_processing.augmentation.zoom_range
     outs:
       - data/processed
+      
+  feature_selection:
+    cmd: python src/feature_selection.py
+    deps:
+      - src/feature_selection.py
+      - data/processed
+    params:
+      - feature_selection.method
+      - feature_selection.num_features
+      - feature_selection.variance_threshold
+    outs:
+      - data/features
+      - models/feature_selector.joblib
