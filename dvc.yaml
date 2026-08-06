@@ -67,3 +67,19 @@ stages:
     plots:
       - reports/training_curves.png:
           cache: false
+
+  model_evaluation:
+    cmd: python src/model_evaluation.py
+    deps:
+      - src/model_evaluation.py
+      - models/model.joblib
+      - data/features
+    params:
+      - model_evaluation.metrics
+      - model_evaluation.confusion_matrix
+    metrics:
+      - metrics/eval_metrics.json:
+          cache: false
+    plots:
+      - reports/confusion_matrix.png:
+          cache: false
