@@ -18,3 +18,34 @@ stages:
       md5: f1749a5e50370b359950c85294c3e36b.dir
       size: 221992
       nfiles: 1797
+  data_processing:
+    cmd: python src/data_processing.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: f1749a5e50370b359950c85294c3e36b.dir
+      size: 221992
+      nfiles: 1797
+    - path: src/data_processing.py
+      hash: md5
+      md5: 40c9de02417c8c75da122d95fafcca6c
+      size: 5433
+    params:
+      params.yaml:
+        data_collection.random_seed: 42
+        data_collection.raw_data_dir: data/raw
+        data_processing.augmentation.enabled: true
+        data_processing.augmentation.horizontal_flip: true
+        data_processing.augmentation.rotation_range: 15
+        data_processing.augmentation.zoom_range: 0.1
+        data_processing.grayscale: true
+        data_processing.image_size: 32
+        data_processing.normalize: true
+        data_processing.test_split: 0.15
+        data_processing.val_split: 0.15
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: d0732cfb1da79efdceda50d432744c7f.dir
+      size: 2944109
+      nfiles: 2

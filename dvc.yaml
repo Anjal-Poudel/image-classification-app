@@ -9,3 +9,23 @@ stages:
     - data_collection.random_seed
     outs:
     - data/raw
+
+  data_processing:
+    cmd: python src/data_processing.py
+    deps:
+      - src/data_processing.py
+      - data/raw
+    params:
+      - data_collection.raw_data_dir
+      - data_collection.random_seed
+      - data_processing.image_size
+      - data_processing.grayscale
+      - data_processing.normalize
+      - data_processing.test_split
+      - data_processing.val_split
+      - data_processing.augmentation.enabled
+      - data_processing.augmentation.rotation_range
+      - data_processing.augmentation.horizontal_flip
+      - data_processing.augmentation.zoom_range
+    outs:
+      - data/processed
