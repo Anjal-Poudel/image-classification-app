@@ -1,0 +1,5 @@
+[core]
+    remote = s3_remote
+['remote "s3_remote"']
+    url = s3://dvc-412341941552-ap-south-1-an
+    profile = dvc-s3-role
